@@ -30,6 +30,7 @@ def grab_password(email):
 
 def parse_data(email,np):
     data = check_haveibeenpwned(email)
+    print(email)
     if not data:
         error("No leaks found in Haveibeenpwned website!")
     else:
@@ -38,11 +39,16 @@ def parse_data(email,np):
         for website in data:
             line = form.format(web=M+website["Name"]+B,date=M+website["AddedDate"]+B,details=M+",".join(website["DataClasses"])+B)
             status(B+line)
+
+        p=grab_password(email)
+        for pp in p:
+            print(C+" "+pp.split(":")[0]+" :"+pp.split(":")[1])
+
         if not np:
             p = grab_password(email)
             if p:
                 status("Plaintext password(s) found!")
                 for pp in p:
-                    print(C+" │"+B+"  └──── "+W+pp.split(":")[1])
+                    print(C+" "+B+" "+W+pp.split(":")[1])
             else:
                 error("Didn't find any plaintext password published!")

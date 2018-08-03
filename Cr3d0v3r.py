@@ -126,6 +126,8 @@ def main():
 		status("Checking email in public leaks...")
 		ispwned.parse_data(email,args.np)
 
+        return
+
 	print(C+" │"+end)
 	line =C+" └──=>Enter a password"+W+"─=> "
 	if os.name=="nt":
@@ -149,3 +151,5 @@ def main():
 
 if __name__ == '__main__':
 	main()
+
+
